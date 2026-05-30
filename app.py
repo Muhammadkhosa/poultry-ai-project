@@ -27,8 +27,23 @@ with tab1:
     st.write("Predict chicken weight based on age and diet type.")
     st.markdown("---")
 
-    col1, col2 = st.columns(2)
+    # Diet Reference Table
+    st.markdown("#### 🌾 Diet Type Reference Guide")
+    diet_data = {
+        "Diet": ["Diet 1", "Diet 2", "Diet 3", "Diet 4"],
+        "Type": ["Control Diet", "Added Protein", "Mixed Supplement", "High Fat Diet"],
+        "Description": [
+            "Basic standard feed — no special additions",
+            "Standard feed + extra protein supplement",
+            "Standard feed + protein + vitamins (Best Growth)",
+            "Standard feed + extra fat/energy"
+        ],
+        "Expected Growth": ["Slowest 🔴", "Moderate 🟡", "Fastest 🟢", "Good 🟡"]
+    }
+    st.table(pd.DataFrame(diet_data))
+    st.markdown("---")
 
+    col1, col2 = st.columns(2)
     with col1:
         time = st.number_input(
             "📅 Chicken Age (Days)",
@@ -69,13 +84,21 @@ with tab2:
     st.write("Predict daily egg production based on breed, age and feed.")
     st.markdown("---")
 
-    col3, col4, col5 = st.columns(3)
+    # Breed Reference Table
+    st.markdown("#### 🐓 Breed Reference Guide")
+    breed_data = {
+        "Breed": ["Marans", "Ameraucana"],
+        "Egg Color": ["Dark Brown", "Blue/Green"],
+        "Avg Eggs/Day": ["3.5 - 5.5", "2.5 - 4.5"],
+        "Best Age (Days)": ["150 - 400", "150 - 400"],
+        "Production Level": ["High 🟢", "Moderate 🟡"]
+    }
+    st.table(pd.DataFrame(breed_data))
+    st.markdown("---")
 
+    col3, col4, col5 = st.columns(3)
     with col3:
-        breed = st.selectbox(
-            "🐓 Breed",
-            options=["Marans", "Ameraucana"]
-        )
+        breed = st.selectbox("🐓 Breed", options=["Marans", "Ameraucana"])
     with col4:
         age = st.number_input(
             "📅 Chicken Age (Days)",
